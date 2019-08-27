@@ -1,0 +1,4 @@
+generate_songs/*
+songs/*
+models/*
+__pycache__/*
