@@ -4,14 +4,10 @@ import config
 
 import librosa
 
-from LSTM import LSTM_Network
+from NeuralNetwork.LSTM import LSTM_Network
+import utils.DataProcessor as dp
 
-def build_random_input():
-    x = np.random.rand(1, 300)
-    x = np.reshape(x, (x.shape[0], x.shape[1], 1))
-    return x
-
-x = build_random_input()
+x = dp.build_random_input()
 
 model = LSTM_Network("LSTM_0020")
 model.load_weights((x.shape[1], x.shape[2]), (1, 100))
@@ -43,4 +39,4 @@ song = generate(sequence=3000, start_song=song)
 
 a = song[300:]
 
-librosa.output.write_wav('file_trim_5s.wav', np.array(a), 22050)
+librosa.output.write_wav(config.generate_dir + "test.wav", np.array(a), 22050)
